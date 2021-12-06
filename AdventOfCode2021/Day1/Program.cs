@@ -74,7 +74,7 @@ while (!stop)
     }
 }
 
-var ltp = CalculateMeasurementsLargerThanPrevious(readings.ToArray());
+var ltp = CalculateMeasurementsLargerThanPrevious(ReadingsAsSlidingWindows(readings.ToArray(), 3).ToArray());
 Console.WriteLine($"Measurement larger than previous measurement: {ltp}");
 
 Console.WriteLine("Press any key to continue...");
@@ -90,7 +90,7 @@ int CalculateMeasurementsLargerThanPrevious(int[] readings)
 
         if (i == 0)
         {
-            Console.WriteLine(" (N/A - no previous measurement)");
+            Console.WriteLine(" (N/A - no previous measurement/sum)");
         }
         else if (readings[i] > readings[i - 1])
         {
@@ -103,8 +103,27 @@ int CalculateMeasurementsLargerThanPrevious(int[] readings)
         }
         else
         {
-            Console.WriteLine(" (equal)");
+            Console.WriteLine(" (no change)");
         }
     }
     return ltp;
+}
+
+IEnumerable<int> ReadingsAsSlidingWindows(int[] readings, int windowSize)
+{
+    int sum = 0;
+    for (int i = 0; i < readings.Length; i++)
+    {
+        sum += readings[i];
+
+        if (i > windowSize - 1)
+        {
+            sum -= readings[i - windowSize];
+        }
+
+        if (i >= windowSize - 1)
+        {
+            yield return sum;
+        }
+    }
 }
