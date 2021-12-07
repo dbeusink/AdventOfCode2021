@@ -10,6 +10,7 @@ namespace Day2
     {
         public int HorizontalPosition { get; set; } = 0;
         public int Depth { get; set; } = 0;
+        public int Aim { get; set; } = 0;
         public int Product => HorizontalPosition * Depth;
 
         public void Move(SubmarineMovement movement, int units)
@@ -19,6 +20,16 @@ namespace Day2
                 case SubmarineMovement.Forward: HorizontalPosition += units; break;
                 case SubmarineMovement.Up: Depth -= units; break;
                 case SubmarineMovement.Down: Depth += units; break;
+            }
+        }
+
+        public void MoveWithAim(SubmarineMovement movement, int units)
+        {
+            switch (movement)
+            {
+                case SubmarineMovement.Forward: HorizontalPosition += units; Depth += (Aim * units); break;
+                case SubmarineMovement.Up: Aim -= units; break;
+                case SubmarineMovement.Down: Aim += units; break;
             }
         }
     }

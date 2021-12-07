@@ -20,12 +20,15 @@ while (!stop)
 }
 
 var navigator = new SubmarineNavigator();
+var navigator2 = new SubmarineNavigator();
 foreach (var reading in readings)
 {
     navigator.Move(reading.Item1, reading.Item2);
+    navigator2.MoveWithAim(reading.Item1, reading.Item2);
 }
 
-Console.WriteLine($"Product: {navigator.Product}");
+Console.WriteLine($"Product part 1: {navigator.Product}");
+Console.WriteLine($"Product part 2: {navigator2.Product}");
 
 Console.WriteLine("Press any key to continue...");
 Console.ReadKey();
