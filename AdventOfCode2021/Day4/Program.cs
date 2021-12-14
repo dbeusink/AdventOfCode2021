@@ -1,8 +1,8 @@
 ﻿using Day4;
 
 // -- Settings --
-const bool loserMode = true; // Part 2: Keep playing till the last board has bingo (return the loser board)
-const bool useExampleInput = false;
+bool loserMode = true; // Part 2: Keep playing till the last board has bingo (return the loser board)
+bool useExampleInput = false;
 
 // Input
 var input = useExampleInput ?
