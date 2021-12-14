@@ -7,7 +7,7 @@ namespace Day4
 {
     public class BingoBoard
     {
-        private readonly int _boardSize = 5;
+        private const int _boardSize = 5;
         private readonly BingoBoardItem[,] _board;
         private readonly BingoBoardItem[,] _transposedBoard;
 
@@ -52,7 +52,6 @@ namespace Day4
                     }
                 }
             }
-
         }
 
         public bool HasBingo()
@@ -110,10 +109,10 @@ namespace Day4
             {
                 for (int j = 0; j < _boardSize; j++)
                 {
-                    sb.Append(_board[i, j].IsMarked ? $"[{_board[i, j].Number:00}]" : $"-{_board[i, j].Number:00}-");
+                    sb.Append(_board[i, j].IsMarked ? $"[{_board[i, j].Number,2}]" : $" {_board[i, j].Number,2} ");
                     if (j < (_boardSize-1))
                     {
-                        sb.Append(" ");
+                        sb.Append(' ');
                     }
                 }
                 if (i < (_boardSize - 1))
