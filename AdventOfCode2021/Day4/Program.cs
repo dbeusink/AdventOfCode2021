@@ -1,12 +1,16 @@
 ﻿using Day4;
 
-//var input = await File.ReadAllLinesAsync("input_example.txt");
-var input = await File.ReadAllLinesAsync("input.txt");
-bool loserMode = true;
+// -- Settings --
+bool loserMode = true; // Part 2: Keep playing till the last board has bingo (return the loser board)
+bool useExampleInput = false;
 
+// Input
+var input = useExampleInput ?
+    await File.ReadAllLinesAsync("input_example.txt") :
+    await File.ReadAllLinesAsync("input.txt");
+
+// Create and parse bingo boards
 var bingoBoards = new List<BingoBoard>();
-var bingoNumbers = input[0].Split(',').Select(x => int.Parse(x));
-
 foreach (var batch in input.Skip(1).Chunk(6))
 {
     var board = new BingoBoard();
@@ -14,7 +18,9 @@ foreach (var batch in input.Skip(1).Chunk(6))
     bingoBoards.Add(board);
 }
 
+// Play
 var stop = false;
+var bingoNumbers = input[0].Split(',').Select(x => int.Parse(x));
 foreach (var number in bingoNumbers)
 {
     foreach(var board in bingoBoards.ToArray())
