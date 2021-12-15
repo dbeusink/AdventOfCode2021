@@ -18,8 +18,7 @@ namespace Day5
 
         public void CalculateIntersections(IEnumerable<LineSegment> lineSegments)
         {
-            var segments = lineSegments.ToArray();
-            foreach (var segment in segments)
+            foreach (var segment in lineSegments)
             {
                 foreach (var point in segment.GetPoints())
                 {

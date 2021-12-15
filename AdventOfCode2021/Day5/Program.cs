@@ -1,9 +1,8 @@
 ﻿
-
-// -- Settings --
 using Day5;
 using System.Text.RegularExpressions;
 
+// -- Settings --
 bool useExampleInput = false;
 
 // Input
